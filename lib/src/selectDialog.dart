@@ -18,6 +18,7 @@ class SelectDialog<T> extends StatefulWidget {
   final String hintText;
   final double maxHeight;
   final double dialogMaxWidth;
+  final Function editComplete;
   final Widget popupTitle;
   final bool showSelectedItem;
   final DropdownSearchCompareFn<T> compareFn;
@@ -62,6 +63,7 @@ class SelectDialog<T> extends StatefulWidget {
     this.dialogMaxWidth,
     this.itemDisabled,
     this.searchBoxController,
+    this.editComplete,
   }) : super(key: key);
 
   @override
@@ -333,6 +335,7 @@ class _SelectDialogState<T> extends State<SelectDialog<T>> {
               child: TextField(
                 controller: widget.searchBoxController,
                 focusNode: focusNode,
+                onEditingComplete: widget.editComplete,
                 onChanged: (f) => _debouncer(() {
                   _onTextChanged(f);
                 }),
