@@ -144,7 +144,7 @@ class DropdownSearchEnter<T> extends StatefulWidget {
 
   final Function editComplete;
 
-  DropdownSearch({
+  DropdownSearchEnter({
     Key key,
     this.onSaved,
     this.validator,
