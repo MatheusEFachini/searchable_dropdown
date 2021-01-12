@@ -28,7 +28,7 @@ typedef Widget LoadingBuilder<T>(BuildContext context, String searchEntry);
 
 enum Mode { DIALOG, BOTTOM_SHEET, MENU }
 
-class DropdownSearch<T> extends StatefulWidget {
+class DropdownSearchEnter<T> extends StatefulWidget {
   ///DropDownSearch label
   final String label;
 
@@ -142,6 +142,8 @@ class DropdownSearch<T> extends StatefulWidget {
   ///text controller to set default search word for example
   final TextEditingController searchBoxController;
 
+  final Function editComplete;
+
   DropdownSearch({
     Key key,
     this.onSaved,
@@ -181,6 +183,7 @@ class DropdownSearch<T> extends StatefulWidget {
     this.popupItemDisabled,
     this.popupBarrierColor,
     this.searchBoxController,
+    this.editComplete,
   })  : assert(isFilteredOnline != null),
         assert(dropdownBuilderSupportsNullItem != null),
         assert(enabled != null),
@@ -211,12 +214,11 @@ class DropdownSearchState<T> extends State<DropdownSearch<T>> {
       valueListenable: _selectedItemNotifier,
       builder: (context, T data, wt) {
         return IgnorePointer(
-          ignoring: !widget.enabled,
-          child: GestureDetector(
-            onTap: () => _selectSearchMode(data),
-            child: _formField(data),
-          ),
-        );
+            ignoring: !widget.enabled,
+            child: GestureDetector(
+              onTap: () => _selectSearchMode(data),
+              child: _formField(data),
+            ));
       },
     );
   }
@@ -412,6 +414,7 @@ class DropdownSearchState<T> extends State<DropdownSearch<T>> {
       autoFocusSearchBox: widget.autoFocusSearchBox,
       dialogMaxWidth: widget.dialogMaxWidth,
       itemDisabled: widget.popupItemDisabled,
+      editComplete: widget.editComplete,
       searchBoxController:
           widget.searchBoxController ?? TextEditingController(),
     );
