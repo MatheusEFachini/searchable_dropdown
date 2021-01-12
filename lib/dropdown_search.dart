@@ -28,7 +28,7 @@ typedef Widget LoadingBuilder<T>(BuildContext context, String searchEntry);
 
 enum Mode { DIALOG, BOTTOM_SHEET, MENU }
 
-class DropdownSearchEnter<T> extends StatefulWidget {
+class DropdownSearch<T> extends StatefulWidget {
   ///DropDownSearch label
   final String label;
 
@@ -144,7 +144,7 @@ class DropdownSearchEnter<T> extends StatefulWidget {
 
   final Function editComplete;
 
-  DropdownSearchEnter({
+  DropdownSearch({
     Key key,
     this.onSaved,
     this.validator,
